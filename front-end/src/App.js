@@ -1,9 +1,10 @@
 import React from "react";
+import ApplicationRoutes from "./Routes/ApplicationRoutes";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <ApplicationRoutes />
     </div>
   );
 }

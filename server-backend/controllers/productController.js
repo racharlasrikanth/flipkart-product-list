@@ -16,7 +16,6 @@ const searchProducts = () => {
 };
 
 const addProduct = async (req, res) => {
-  console.log(req.body);
   let {
     brand = "",
     type = "",

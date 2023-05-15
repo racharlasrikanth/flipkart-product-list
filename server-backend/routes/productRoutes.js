@@ -8,10 +8,6 @@ const {
   deleteProduct,
   searchProducts,
 } = require("../controllers/productController");
-const {
-  authenticateUser,
-  authorizePermissions,
-} = require("./../middlewares/authentication");
 
 router.route("/").get(getAllProducts);
 router.route("/add").post(addProduct);

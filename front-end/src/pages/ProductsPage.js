@@ -1,53 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductsList from "../containers/ProductsList";
+import { GET_ALL_PRODUCTS } from "./../utils";
 
 function ProductsPage() {
-  const rows = [
-    {
-      name: "Maggi",
-      desc: "Maggi with 2 packs",
-      weight: "200g",
-      price: 250,
-      quantity: 10,
-      image: "",
-    },
-    {
-      name: "Maggi",
-      desc: "Maggi with 4 packs",
-      weight: "500g",
-      price: 550,
-      quantity: 20,
-      image: "",
-    },
-    {
-      name: "Lays",
-      desc: "Lays with red color",
-      weight: "100g",
-      price: 10,
-      quantity: 50,
-      image: "",
-    },
-    {
-      name: "Lays",
-      desc: "Maggi with blue color",
-      weight: "100g",
-      price: 10,
-      quantity: 60,
-      image: "",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState({ status: false, message: "" });
+
+  const fetchProducts = async (comingUrl) => {
+    setIsLoading(true);
+    setIsError({ status: false, message: "" });
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        searchKey: searchKey,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await fetch(comingUrl, options);
+      const { allProducts } = await response.json();
+      setProducts([...allProducts]);
+      setIsLoading(false);
+      setIsError({ status: false, message: "" });
+    } catch (error) {
+      setIsLoading(false);
+      setIsError({
+        status: true,
+        message: error.message || "Something went wrong...",
+      });
+    }
+  };
+  useEffect(() => {
+    fetchProducts(`${GET_ALL_PRODUCTS}/searchProducts`);
+  }, [searchKey]);
 
   return (
-    <main className="main-container">
+    <main className="main-container paddingBottomDesktop-hundred paddingTopDesktop-hundred paddingBottomMobile-fifty paddingTopMobile-fifty">
       <div className="main-content wrapper">
-        <div className="search-container">
+        <div className="search-container paddingBottomDesktop-thirty paddingBottomMobile-twenty">
           <input
             type="text"
             className="primary-input full-width-mobile full-width-desktop"
             placeholder="Search for a Product"
+            value={searchKey}
+            onChange={(e) => setSearchKey(e.target.value)}
           />
         </div>
-        <ProductsList data={rows} />
+        <ProductsList data={products} isLoading={isLoading} />
       </div>
     </main>
   );

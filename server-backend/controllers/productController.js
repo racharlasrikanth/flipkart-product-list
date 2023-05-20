@@ -11,8 +11,25 @@ const getAllProducts = async (req, res) => {
   });
 };
 
-const searchProducts = () => {
-  return [];
+const searchProducts = async (req, res) => {
+  const { searchKey } = req.body;
+  let totalProducts = await Product.find({});
+
+  let allProducts = totalProducts.filter((eachProd) => {
+    return eachProd.name.toLowerCase().includes(searchKey);
+  });
+
+  if (allProducts.length == 0) {
+    let multipart = searchKey.split(" ")[0];
+    allProducts = totalProducts.filter((eachProd) => {
+      return eachProd.name.toLowerCase().includes(multipart);
+    });
+  }
+
+  res.status(StatusCodes.OK).json({
+    count: allProducts.length,
+    allProducts,
+  });
 };
 
 const addProduct = async (req, res) => {
@@ -67,7 +84,7 @@ const addProduct = async (req, res) => {
 };
 
 const getSingleProduct = async (req, res) => {
-  const product = await Product.findOne({ _id: req.params.id });
+  let product = await Product.findOne({ _id: req.params.id });
 
   if (!product) {
     throw new CustomError.NotFoundError(
@@ -75,11 +92,16 @@ const getSingleProduct = async (req, res) => {
     );
   }
 
+  let allProducts = await Product.find({});
+  let similorProducts = allProducts.filter((eachProd) => {
+    return eachProd.name.toLowerCase().includes(product.name.split(" ")[0]);
+  });
+
   // check weather user having this route permission or not
   //   checkPermissions(req.user, user._id);
 
   // if all goes good (if requersted user having all permissons then proceed to send response)
-  res.status(StatusCodes.OK).json({ product });
+  res.status(StatusCodes.OK).json({ product, similorProducts });
 };
 
 const updateProduct = async (req, res) => {

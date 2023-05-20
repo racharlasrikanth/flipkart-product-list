@@ -11,18 +11,18 @@ import styled from "styled-components";
 
 function CustomTable({
   headerCoulumns = [],
-  data = [],
+  rowsData = [],
   pagination = false,
   initialCount = 10,
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(initialCount);
   const [columns, setColumns] = useState(headerCoulumns);
-  const [rows, setRows] = useState(data);
+  const [rows, setRows] = useState(rowsData);
 
   useEffect(() => {
-    setRows(rows);
-  }, [rows]);
+    setRows(rowsData);
+  }, [rowsData]);
 
   useEffect(() => {
     setColumns(columns);

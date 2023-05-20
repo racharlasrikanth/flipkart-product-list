@@ -277,6 +277,17 @@ p {
   font-weight: bold;
   font-size: 18px;
 }
+.loading {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  border-radius: 50%;
+  border: 4px solid #ccc;
+  border-top-color: var(--clr-primary-5);
+  animation: spinner 0.6s linear infinite;
+}
 
 /* animations */
 @keyframes bounceAnimation {
@@ -290,5 +301,101 @@ p {
 @keyframes spinner {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* padding classes */
+@media screen and (max-width: 991px) {
+  .paddingTopMobile-ten {
+    padding-top: 10px !important;
+  }
+  .paddingTopMobile-twenty {
+    padding-top: 20px !important;
+  }
+  .paddingTopMobile-thirty {
+    padding-top: 30px !important;
+  }
+  .paddingTopMobile-forty {
+    padding-top: 40px !important;
+  }
+  .paddingTopMobile-fifty {
+    padding-top: 50px !important;
+  }
+  .paddingBottomMobile-ten {
+    padding-bottom: 10px !important;
+  }
+  .paddingBottomMobile-twenty {
+    padding-bottom: 20px !important;
+  }
+  .paddingBottomMobile-thirty {
+    padding-bottom: 30px !important;
+  }
+  .paddingBottomMobile-forty {
+    padding-bottom: 40px !important;
+  }
+  .paddingBottomMobile-fifty {
+    padding-bottom: 50px !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .paddingTopDesktop-ten {
+    padding-top: 10px !important;
+  }
+  .paddingTopDesktop-twenty {
+    padding-top: 20px !important;
+  }
+  .paddingTopDesktop-thirty {
+    padding-top: 30px !important;
+  }
+  .paddingTopDesktop-forty {
+    padding-top: 40px !important;
+  }
+  .paddingTopDesktop-fifty {
+    padding-top: 50px !important;
+  }
+  .paddingTopDesktop-sixty {
+    padding-top: 60px !important;
+  }
+  .paddingTopDesktop-seventy {
+    padding-top: 70px !important;
+  }
+  .paddingTopDesktop-eighty {
+    padding-top: 80px !important;
+  }
+  .paddingTopDesktop-ninety {
+    padding-top: 90px !important;
+  }
+  .paddingTopDesktop-hundred {
+    padding-top: 100px !important;
+  }
+  .paddingBottomDesktop-ten {
+    padding-bottom: 10px !important;
+  }
+  .paddingBottomDesktop-twenty {
+    padding-bottom: 20px !important;
+  }
+  .paddingBottomDesktop-thirty {
+    padding-bottom: 30px !important;
+  }
+  .paddingBottomDesktop-forty {
+    padding-bottom: 40px !important;
+  }
+  .paddingBottomDesktop-fifty {
+    padding-bottom: 50px !important;
+  }
+  .paddingBottomDesktop-sixty {
+    padding-bottom: 60px !important;
+  }
+  .paddingBottomDesktop-seventy {
+    padding-bottom: 70px !important;
+  }
+  .paddingBottomDesktop-eighty {
+    padding-bottom: 80px !important;
+  }
+  .paddingBottomDesktop-ninety {
+    padding-bottom: 90px !important;
+  }
+  .paddingBottomDesktop-hundred {
+    padding-bottom: 100px !important;
   }
 }
